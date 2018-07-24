@@ -18,6 +18,13 @@
 		9675E6BA21031D3E002B766C /* GoodsListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9675E6B721031D3E002B766C /* GoodsListCollectionViewCell.xib */; };
 		9693E352210327A500A56805 /* GoodsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9693E351210327A500A56805 /* GoodsViewModel.m */; };
 		9693E355210327F600A56805 /* GoodsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9693E353210327F600A56805 /* GoodsListModel.m */; };
+		96EAA43421070AF800E01DBD /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA43221070AF800E01DBD /* ShoppingCartViewController.m */; };
+		96EAA43521070AF800E01DBD /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EAA43321070AF800E01DBD /* ShoppingCartViewController.xib */; };
+		96EAA43B21070D2C00E01DBD /* ShoppingCartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA43A21070D2C00E01DBD /* ShoppingCartViewModel.m */; };
+		96EAA43F21070E4A00E01DBD /* ShoppingCartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA43D21070E4A00E01DBD /* ShoppingCartTableViewCell.m */; };
+		96EAA44021070E4A00E01DBD /* ShoppingCartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96EAA43E21070E4A00E01DBD /* ShoppingCartTableViewCell.xib */; };
+		96EAA4432107112500E01DBD /* ShoppingCartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA4422107112500E01DBD /* ShoppingCartModel.m */; };
+		96EAA446210719E800E01DBD /* ShoppingCartHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96EAA445210719E800E01DBD /* ShoppingCartHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +47,18 @@
 		9693E351210327A500A56805 /* GoodsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsViewModel.m; sourceTree = "<group>"; };
 		9693E353210327F600A56805 /* GoodsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListModel.m; sourceTree = "<group>"; };
 		9693E354210327F600A56805 /* GoodsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsViewModel.h; sourceTree = "<group>"; };
+		96EAA43121070AF800E01DBD /* ShoppingCartViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
+		96EAA43221070AF800E01DBD /* ShoppingCartViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
+		96EAA43321070AF800E01DBD /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
+		96EAA43921070D2C00E01DBD /* ShoppingCartViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewModel.h; sourceTree = "<group>"; };
+		96EAA43A21070D2C00E01DBD /* ShoppingCartViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewModel.m; sourceTree = "<group>"; };
+		96EAA43C21070E4A00E01DBD /* ShoppingCartTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartTableViewCell.h; sourceTree = "<group>"; };
+		96EAA43D21070E4A00E01DBD /* ShoppingCartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartTableViewCell.m; sourceTree = "<group>"; };
+		96EAA43E21070E4A00E01DBD /* ShoppingCartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartTableViewCell.xib; sourceTree = "<group>"; };
+		96EAA4412107112500E01DBD /* ShoppingCartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartModel.h; sourceTree = "<group>"; };
+		96EAA4422107112500E01DBD /* ShoppingCartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartModel.m; sourceTree = "<group>"; };
+		96EAA444210719E800E01DBD /* ShoppingCartHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShoppingCartHeaderView.h; sourceTree = "<group>"; };
+		96EAA445210719E800E01DBD /* ShoppingCartHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartHeaderView.m; sourceTree = "<group>"; };
 		BD1874BCB5E42C01C2A5E855 /* Pods-RACProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RACProject/Pods-RACProject.debug.xcconfig"; sourceTree = "<group>"; };
 		D420CC1D17EC7D3B5A61D8DF /* Pods-RACProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RACProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-RACProject/Pods-RACProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +106,21 @@
 			children = (
 				9675E699210200D0002B766C /* AppDelegate.h */,
 				9675E69A210200D0002B766C /* AppDelegate.m */,
+				96EAA42F21070AA800E01DBD /* ViewController */,
+				96EAA43021070AC100E01DBD /* ShoppingCart */,
+				9675E69F210200D0002B766C /* Main.storyboard */,
+				9675E6AF2102032C002B766C /* PrefixHeader.pch */,
+				9675E6A2210200DC002B766C /* Assets.xcassets */,
+				9675E6A4210200DC002B766C /* LaunchScreen.storyboard */,
+				9675E6A7210200DC002B766C /* Info.plist */,
+				9675E6A8210200DC002B766C /* main.m */,
+			);
+			path = RACProject;
+			sourceTree = "<group>";
+		};
+		96EAA42F21070AA800E01DBD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
 				9675E69C210200D0002B766C /* ViewController.h */,
 				9675E69D210200D0002B766C /* ViewController.m */,
 				9693E34F2103276D00A56805 /* GoodsListModel.h */,
@@ -96,14 +130,27 @@
 				9675E6B821031D3E002B766C /* GoodsListCollectionViewCell.h */,
 				9675E6B621031D3D002B766C /* GoodsListCollectionViewCell.m */,
 				9675E6B721031D3E002B766C /* GoodsListCollectionViewCell.xib */,
-				9675E69F210200D0002B766C /* Main.storyboard */,
-				9675E6AF2102032C002B766C /* PrefixHeader.pch */,
-				9675E6A2210200DC002B766C /* Assets.xcassets */,
-				9675E6A4210200DC002B766C /* LaunchScreen.storyboard */,
-				9675E6A7210200DC002B766C /* Info.plist */,
-				9675E6A8210200DC002B766C /* main.m */,
 			);
-			path = RACProject;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		96EAA43021070AC100E01DBD /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				96EAA43121070AF800E01DBD /* ShoppingCartViewController.h */,
+				96EAA43221070AF800E01DBD /* ShoppingCartViewController.m */,
+				96EAA43321070AF800E01DBD /* ShoppingCartViewController.xib */,
+				96EAA4412107112500E01DBD /* ShoppingCartModel.h */,
+				96EAA4422107112500E01DBD /* ShoppingCartModel.m */,
+				96EAA43921070D2C00E01DBD /* ShoppingCartViewModel.h */,
+				96EAA43A21070D2C00E01DBD /* ShoppingCartViewModel.m */,
+				96EAA43C21070E4A00E01DBD /* ShoppingCartTableViewCell.h */,
+				96EAA43D21070E4A00E01DBD /* ShoppingCartTableViewCell.m */,
+				96EAA43E21070E4A00E01DBD /* ShoppingCartTableViewCell.xib */,
+				96EAA444210719E800E01DBD /* ShoppingCartHeaderView.h */,
+				96EAA445210719E800E01DBD /* ShoppingCartHeaderView.m */,
+			);
+			path = ShoppingCart;
 			sourceTree = "<group>";
 		};
 		C0E1471DEF717BFCEB15CE95 /* Pods */ = {
@@ -178,6 +225,8 @@
 				9675E6A3210200DC002B766C /* Assets.xcassets in Resources */,
 				9675E6A1210200D0002B766C /* Main.storyboard in Resources */,
 				9675E6BA21031D3E002B766C /* GoodsListCollectionViewCell.xib in Resources */,
+				96EAA43521070AF800E01DBD /* ShoppingCartViewController.xib in Resources */,
+				96EAA44021070E4A00E01DBD /* ShoppingCartTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,11 +277,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9693E355210327F600A56805 /* GoodsListModel.m in Sources */,
+				96EAA43F21070E4A00E01DBD /* ShoppingCartTableViewCell.m in Sources */,
+				96EAA4432107112500E01DBD /* ShoppingCartModel.m in Sources */,
 				9675E69E210200D0002B766C /* ViewController.m in Sources */,
+				96EAA43B21070D2C00E01DBD /* ShoppingCartViewModel.m in Sources */,
+				96EAA446210719E800E01DBD /* ShoppingCartHeaderView.m in Sources */,
 				9675E6B921031D3E002B766C /* GoodsListCollectionViewCell.m in Sources */,
 				9693E352210327A500A56805 /* GoodsViewModel.m in Sources */,
 				9675E6A9210200DC002B766C /* main.m in Sources */,
 				9675E69B210200D0002B766C /* AppDelegate.m in Sources */,
+				96EAA43421070AF800E01DBD /* ShoppingCartViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "GoodsViewModel.h"
 #import "GoodsListCollectionViewCell.h"
+#import "ShoppingCartViewController.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -33,6 +34,8 @@
     [self.goodsVM.btnCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         self.textLabel.text = x;
+//        [self.navigationController pushViewController:[NSClassFromString(@"ShoppingCartViewController") new] animated:YES];
+        [self presentViewController:[NSClassFromString(@"ShoppingCartViewController") new] animated:YES completion:nil];
     }];
     [self layoutCollectionView];
     [self.goodsVM.requestCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
