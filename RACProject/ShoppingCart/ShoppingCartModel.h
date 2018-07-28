@@ -8,13 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
-@class GoodsModel;
+@class ShopModel;
 @interface ShoppingCartModel : NSObject
+
+@property (nonatomic, strong) NSMutableArray <ShopModel *>*shopArray;
+@property (nonatomic, assign) CGFloat price;
+@property (nonatomic, assign) NSInteger selectedCount;
+@property (nonatomic, assign) NSInteger selectedGoodsCount;
+@property (nonatomic, assign) BOOL selected;//选择状态
+
+@end
+
+@class GoodsModel;
+@interface ShopModel : NSObject
 
 @property (nonatomic, strong) NSMutableArray <GoodsModel *>*goodsArray;
 @property (nonatomic, copy) NSString *shopName;
 @property (nonatomic, assign) CGFloat price;
-@property (nonatomic, assign) NSInteger count;
 @property (nonatomic, assign) BOOL hideRowContent;
 @property (nonatomic, assign) NSInteger selectedCount;
 @property (nonatomic, assign) BOOL selected;//选择状态

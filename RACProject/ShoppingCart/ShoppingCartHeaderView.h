@@ -11,8 +11,6 @@
 
 @interface ShoppingCartHeaderView : UITableViewHeaderFooterView
 
-@property (nonatomic, strong) ShoppingCartViewModel *shoppingVM;
-
 @property (nonatomic, strong) UIButton *selectBtn;
 - (void)bindViewModel:(ShoppingCartViewModel *)viewModel Section:(NSInteger)section;
 - (void)selectShopModelSection:(NSInteger)section;

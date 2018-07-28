@@ -33,9 +33,9 @@
         self.allSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 self.buttonSelected = !self.buttonSelected;
-                for (ShoppingCartModel *cartModel in self.shopArray) {
-                    cartModel.selected = self.buttonSelected;
-                    for (GoodsModel *model in cartModel.goodsArray) {
+                for (ShopModel *shopModel in self.shopCartModel.shopArray) {
+                    shopModel.selected = self.buttonSelected;
+                    for (GoodsModel *model in shopModel.goodsArray) {
                         model.selected = self.buttonSelected;
                     }
                 }
@@ -49,10 +49,15 @@
 }
 
 - (void)getData {
+    self.shopCartModel = [ShoppingCartModel new];
+    self.shopCartModel.price = 0;
+    self.shopCartModel.selected = NO;
+    self.shopCartModel.selectedCount = 0;
+    self.shopCartModel.shopArray = @[].mutableCopy;
     for (int i=0; i<4; i++) {
-        ShoppingCartModel *cartModel = [ShoppingCartModel new];
-        cartModel.shopName = [NSString stringWithFormat:@"店铺名称%d",i];
-        cartModel.selected = NO;
+        ShopModel *shopModel = [ShopModel new];
+        shopModel.shopName = [NSString stringWithFormat:@"店铺名称%d",i];
+        shopModel.selected = NO;
         NSMutableArray *tempArray = @[].mutableCopy;
         for (int j=0; j<(arc4random()%2)+1; j++) {
             GoodsModel *model = [GoodsModel new];
@@ -64,16 +69,19 @@
             model.selected = NO;
             [tempArray addObject:model];
         }
-        cartModel.goodsArray = tempArray;
-        [self.shopArray addObject:cartModel];
+        shopModel.goodsArray = tempArray;
+        [self.shopCartModel.shopArray addObject:shopModel];
     }
-}
-
-- (NSMutableArray *)shopArray {
-    if (!_shopArray) {
-        _shopArray = @[].mutableCopy;
-    }
-    return _shopArray;
+    @weakify(self)
+    [RACObserve(self.shopCartModel, selectedCount) subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        if (self.shopCartModel.shopArray.count == [x integerValue]) {
+            self.shopCartModel.selected = YES;
+        }
+        else {
+            self.shopCartModel.selected = NO;
+        }
+    }];
 }
 
 @end

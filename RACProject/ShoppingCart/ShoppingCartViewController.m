@@ -18,6 +18,7 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (weak, nonatomic) IBOutlet UIButton *accountButton;
 @property (weak, nonatomic) IBOutlet UIButton *allSelectedBtn;
+@property (weak, nonatomic) IBOutlet UILabel *totalMoneyLabel;
 @property (nonatomic, strong) ShoppingCartViewModel *shoppingVM;
 
 @end
@@ -37,6 +38,8 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
     [self.shoppingVM.allSelectCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
         self.allSelectedBtn.selected = [x boolValue];
         [self.tableview reloadData];
+        [self.accountButton setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)self.shoppingVM.shopCartModel.selectedGoodsCount] forState:UIControlStateNormal];
+        self.totalMoneyLabel.text = [NSString stringWithFormat:@"总计：¥ %.2f",self.shoppingVM.shopCartModel.price];
     }];
     [self configTableView];
 }
@@ -47,8 +50,12 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
     [self.tableview registerClass:ShoppingCartHeaderView.class forHeaderFooterViewReuseIdentifier:ShoppingCartHeaderViewIdentifier];
     @weakify(self)
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"updateUI" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        @strongify(self)
         NSIndexPath *indexpath = x.object;
-        [self_weak_.tableview reloadSections:[NSIndexSet indexSetWithIndex:indexpath.section] withRowAnimation:UITableViewRowAnimationNone];
+        [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:indexpath.section] withRowAnimation:UITableViewRowAnimationNone];
+        self.allSelectedBtn.selected = self.shoppingVM.shopCartModel.selected;
+        [self.accountButton setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)self.shoppingVM.shopCartModel.selectedGoodsCount] forState:UIControlStateNormal];
+        self.totalMoneyLabel.text = [NSString stringWithFormat:@"总计：¥ %.2f",self.shoppingVM.shopCartModel.price];
     }];
     [self.allSelectedBtn setImage:[UIImage imageNamed:@"unselected"] forState:UIControlStateNormal];
     [self.allSelectedBtn setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
@@ -60,11 +67,11 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.shoppingVM.shopArray.count;
+    return self.shoppingVM.shopCartModel.shopArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shoppingVM.shopArray[section].goodsArray.count;
+    return self.shoppingVM.shopCartModel.shopArray[section].goodsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -14,6 +14,6 @@
 - (void)getData;
 @property (nonatomic, strong, readonly) RACCommand *allSelectCommand;
 @property (nonatomic, strong, readonly) RACCommand *accountCommand;
-@property (nonatomic, strong) NSMutableArray <ShoppingCartModel *>*shopArray;
+@property (nonatomic, strong) ShoppingCartModel *shopCartModel;
 
 @end

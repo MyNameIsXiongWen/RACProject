@@ -10,6 +10,7 @@
 
 @interface ShoppingCartHeaderView ()
 
+@property (nonatomic, strong) ShoppingCartViewModel *shoppingVM;
 @property (nonatomic, strong) UILabel *shopNameLabel;
 @property (nonatomic, strong) UILabel *totalPriceLabel;
 
@@ -54,22 +55,21 @@
 
 - (void)bindViewModel:(ShoppingCartViewModel *)viewModel Section:(NSInteger)section {
     self.shoppingVM = viewModel;
-    ShoppingCartModel *model = viewModel.shopArray[section];
+    ShopModel *model = viewModel.shopCartModel.shopArray[section];
     self.shopNameLabel.text = model.shopName;
     self.totalPriceLabel.text = [NSString stringWithFormat:@"%.2f",model.price];
     self.selectBtn.selected = model.selected;
-//    RAC(self.selectBtn, selected) = RACObserve(model, selected);
-//    @weakify(self);
-//    [RACObserve(self.selectBtn, selected) subscribeNext:^(id  _Nullable x) {
-//        if ([x boolValue]) {
-//            self_weak_.totalPriceLabel.text = [NSString stringWithFormat:@"%.2f",model.price];
-//        }
-//    }];
 }
 
 - (void)selectShopModelSection:(NSInteger)section {
-    ShoppingCartModel *model = self.shoppingVM.shopArray[section];
+    ShopModel *model = self.shoppingVM.shopCartModel.shopArray[section];
     model.selected = !model.selected;
+    if (model.selected) {
+        self.shoppingVM.shopCartModel.selectedCount++;
+    }
+    else {
+        self.shoppingVM.shopCartModel.selectedCount--;
+    }
     for (GoodsModel *mmm in model.goodsArray) {
         mmm.selected = model.selected;
     }
