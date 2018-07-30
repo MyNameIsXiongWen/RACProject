@@ -11,7 +11,6 @@
 @interface ShoppingCartViewModel ()
 
 @property (nonatomic, strong, readwrite) RACCommand *allSelectCommand;
-@property (nonatomic, strong, readwrite) RACCommand *accountCommand;
 @property (nonatomic, assign) BOOL buttonSelected;
 
 @end
@@ -21,15 +20,6 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.accountCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
-            return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
-                [subscriber sendNext:@""];
-                [subscriber sendCompleted];
-                return [RACDisposable disposableWithBlock:^{
-                    
-                }];
-            }];
-        }];
         self.allSelectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             return [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 self.buttonSelected = !self.buttonSelected;
@@ -67,6 +57,7 @@
             model.img = @"https://img.mankuhome.com/sku/5a2c3175436eacb84f83ab9e4fbcd69e3be0.jpeg";
             model.num = 1;
             model.selected = NO;
+            model.countDownTimeInterval = [[NSString stringWithFormat:@"15046679%02d",arc4random()%100] integerValue];
             [tempArray addObject:model];
         }
         shopModel.goodsArray = tempArray;
@@ -82,6 +73,14 @@
             self.shopCartModel.selected = NO;
         }
     }];
+}
+
+- (void)countdown {
+    for (ShopModel *shopM in self.shopCartModel.shopArray) {
+        for (GoodsModel *goodsM in shopM.goodsArray) {
+            goodsM.countDownTimeInterval--;
+        }
+    }
 }
 
 @end

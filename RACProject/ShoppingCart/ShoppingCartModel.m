@@ -72,4 +72,12 @@
 
 @implementation GoodsModel
 
+//- (NSTimeInterval)countDownTimeInterval {
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"HH:mm:ss"];
+//    NSDate *date = [formatter dateFromString:self.countDownTime];
+//    NSTimeInterval timeinterval = [date timeIntervalSince1970];
+//    return timeinterval;
+//}
+
 @end

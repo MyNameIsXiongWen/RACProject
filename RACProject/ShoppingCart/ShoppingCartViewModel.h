@@ -12,8 +12,8 @@
 @interface ShoppingCartViewModel : NSObject
 
 - (void)getData;
+- (void)countdown;
 @property (nonatomic, strong, readonly) RACCommand *allSelectCommand;
-@property (nonatomic, strong, readonly) RACCommand *accountCommand;
 @property (nonatomic, strong) ShoppingCartModel *shopCartModel;
 
 @end

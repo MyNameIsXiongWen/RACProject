@@ -20,6 +20,7 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
 @property (weak, nonatomic) IBOutlet UIButton *allSelectedBtn;
 @property (weak, nonatomic) IBOutlet UILabel *totalMoneyLabel;
 @property (nonatomic, strong) ShoppingCartViewModel *shoppingVM;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -30,18 +31,26 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
     // Do any additional setup after loading the view from its nib.
     self.shoppingVM = [[ShoppingCartViewModel alloc] init];
     [self.shoppingVM getData];
-    self.accountButton.rac_command = self.shoppingVM.accountCommand;
     self.allSelectedBtn.rac_command = self.shoppingVM.allSelectCommand;
-    [self.shoppingVM.accountCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
+    @weakify(self)
+    [[self.accountButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+        @strongify(self)
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
+    
     [self.shoppingVM.allSelectCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
         self.allSelectedBtn.selected = [x boolValue];
         [self.tableview reloadData];
         [self.accountButton setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)self.shoppingVM.shopCartModel.selectedGoodsCount] forState:UIControlStateNormal];
         self.totalMoneyLabel.text = [NSString stringWithFormat:@"总计：¥ %.2f",self.shoppingVM.shopCartModel.price];
     }];
     [self configTableView];
+    
+    [[[RACSignal interval:1.0 onScheduler:[RACScheduler mainThreadScheduler]] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSDate * _Nullable x) {
+        @strongify(self)
+        [self.shoppingVM countdown];
+    }];
 }
 
 - (void)configTableView {

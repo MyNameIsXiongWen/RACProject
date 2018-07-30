@@ -40,5 +40,7 @@
 @property (nonatomic, assign) NSInteger num;//数量
 @property (nonatomic, copy) NSString *skuAttrNames; //sku 信息
 @property (nonatomic, assign) BOOL selected;//选择状态
+@property (nonatomic, copy) NSString *countDownTime;
+@property (nonatomic, assign) NSTimeInterval countDownTimeInterval;
 
 @end
