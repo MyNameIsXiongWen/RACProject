@@ -60,8 +60,6 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
     @weakify(self)
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"updateUI" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
         @strongify(self)
-        NSIndexPath *indexpath = x.object;
-        [self.tableview reloadSections:[NSIndexSet indexSetWithIndex:indexpath.section] withRowAnimation:UITableViewRowAnimationNone];
         self.allSelectedBtn.selected = self.shoppingVM.shopCartModel.selected;
         [self.accountButton setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)self.shoppingVM.shopCartModel.selectedGoodsCount] forState:UIControlStateNormal];
         self.totalMoneyLabel.text = [NSString stringWithFormat:@"总计：¥ %.2f",self.shoppingVM.shopCartModel.price];

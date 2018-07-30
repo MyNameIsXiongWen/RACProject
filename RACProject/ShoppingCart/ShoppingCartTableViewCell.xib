@@ -37,13 +37,23 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mja-e1-Tax">
-                        <rect key="frame" x="120" y="10" width="190" height="17"/>
+                        <rect key="frame" x="120" y="10" width="120" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQE-Wz-LxE">
+                        <rect key="frame" x="240" y="10" width="70" height="16"/>
+                        <color key="backgroundColor" red="1" green="0.078704673700000005" blue="0.044192155759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="70" id="Rha-KG-4YE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SY-Xo-DTz">
-                        <rect key="frame" x="120" y="36" width="190" height="17"/>
+                        <rect key="frame" x="120" y="36" width="120" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -97,12 +107,14 @@
                     <constraint firstItem="uTK-mS-dDL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2IO-3O-P5F"/>
                     <constraint firstItem="jFa-Wr-42A" firstAttribute="top" secondItem="7SY-Xo-DTz" secondAttribute="bottom" constant="18" id="2Rn-rj-OPS"/>
                     <constraint firstItem="jFa-Wr-42A" firstAttribute="leading" secondItem="7SY-Xo-DTz" secondAttribute="leading" id="6Dj-bR-mpm"/>
+                    <constraint firstItem="bQE-Wz-LxE" firstAttribute="leading" secondItem="Mja-e1-Tax" secondAttribute="trailing" id="Cwe-Pg-19T"/>
                     <constraint firstAttribute="bottom" secondItem="kMR-0P-kk9" secondAttribute="bottom" constant="9.5" id="DQp-93-lm2"/>
                     <constraint firstItem="Mja-e1-Tax" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="FYh-wk-mtJ"/>
                     <constraint firstItem="7SY-Xo-DTz" firstAttribute="top" secondItem="Mja-e1-Tax" secondAttribute="bottom" constant="9" id="NMa-YS-YWi"/>
+                    <constraint firstItem="bQE-Wz-LxE" firstAttribute="top" secondItem="Mja-e1-Tax" secondAttribute="top" id="Pdl-U0-NAX"/>
                     <constraint firstItem="Mja-e1-Tax" firstAttribute="leading" secondItem="Yer-p1-uYL" secondAttribute="trailing" constant="10" id="XpL-K3-f7R"/>
+                    <constraint firstAttribute="trailing" secondItem="bQE-Wz-LxE" secondAttribute="trailing" constant="10" id="aln-1y-RTS"/>
                     <constraint firstItem="7SY-Xo-DTz" firstAttribute="leading" secondItem="Mja-e1-Tax" secondAttribute="leading" id="msk-aa-dcp"/>
-                    <constraint firstAttribute="trailing" secondItem="Mja-e1-Tax" secondAttribute="trailing" constant="10" id="t9J-jP-qdg"/>
                     <constraint firstAttribute="trailing" secondItem="kMR-0P-kk9" secondAttribute="trailing" constant="10" id="uPW-IC-T2B"/>
                     <constraint firstItem="Yer-p1-uYL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="v7g-qW-iLa"/>
                     <constraint firstItem="uTK-mS-dDL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vYC-Y3-bDd"/>
@@ -119,6 +131,7 @@
                 <outlet property="minusButton" destination="5HQ-op-TY2" id="bCo-E5-DNa"/>
                 <outlet property="numberTextField" destination="5UN-y9-SJd" id="Gd9-wh-otP"/>
                 <outlet property="selectBtn" destination="uTK-mS-dDL" id="91U-9h-cEu"/>
+                <outlet property="timeLabel" destination="bQE-Wz-LxE" id="oIW-O4-lQ7"/>
             </connections>
             <point key="canvasLocation" x="34" y="85"/>
         </tableViewCell>

@@ -18,6 +18,8 @@
     self.countView.layer.borderWidth = 0.5;
     self.numberTextField.layer.borderColor = [UIColor colorFromHexString:@"cccccc"].CGColor;
     self.numberTextField.layer.borderWidth = 0.5;
+    self.timeLabel.layer.cornerRadius = 4;
+    self.timeLabel.layer.masksToBounds = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.selectBtn setImage:[UIImage imageNamed:@"unselected"] forState:UIControlStateNormal];
     [self.selectBtn setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
@@ -32,29 +34,32 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"HH:mm:ss"];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.countDownTimeInterval];
-    self.goodsSpecLabel.text = [formatter stringFromDate:date];
+    self.timeLabel.text = [formatter stringFromDate:date];
+    self.goodsSpecLabel.text = model.skuAttrNames;
     self.goodsPriceLabel.text = model.perPrice;
     self.numberTextField.text = [NSString stringWithFormat:@"%@",@(model.num)];
     self.selectBtn.selected = model.selected;
     @weakify(self)
     [RACObserve(model, countDownTimeInterval) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
-//        NSTimeInterval ttt = x;
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:model.countDownTimeInterval];
-        self.goodsSpecLabel.text = [formatter stringFromDate:date];
+        NSNumber *numberx = (NSNumber *)x;
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:numberx.intValue];
+        self.timeLabel.text = [formatter stringFromDate:date];
     }];
     [RACObserve(model, num) subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         self.minusButton.enabled = [x integerValue] > 1;
+    }];
+    [RACObserve(model, selected) subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        self.selectBtn.selected = [x boolValue];
     }];
 }
 
 - (void)minusGoodsModelCountIndexPath:(NSIndexPath *)indexPath {
     ShopModel *shopModel = self.shoppingVM.shopCartModel.shopArray[indexPath.section];
     GoodsModel *model = shopModel.goodsArray[indexPath.row];
-    if (model.num > 1) {
-        model.num --;
-    }
+    model.num --;
     self.numberTextField.text = [NSString stringWithFormat:@"%@",@(model.num)];
     if (shopModel.selected) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateUI" object:indexPath];

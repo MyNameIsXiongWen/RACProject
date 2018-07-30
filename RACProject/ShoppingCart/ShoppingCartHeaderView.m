@@ -31,6 +31,13 @@
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         [self layoutUI];
+        @weakify(self)
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"updateUI" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+            @strongify(self)
+            NSIndexPath *indexpath = x.object;
+            ShopModel *model = self.shoppingVM.shopCartModel.shopArray[indexpath.section];
+            self.totalPriceLabel.text = [NSString stringWithFormat:@"%.2f",model.price];
+        }];
     }
     return self;
 }
@@ -59,6 +66,11 @@
     self.shopNameLabel.text = model.shopName;
     self.totalPriceLabel.text = [NSString stringWithFormat:@"%.2f",model.price];
     self.selectBtn.selected = model.selected;
+    @weakify(self)
+    [RACObserve(model, selected) subscribeNext:^(id  _Nullable x) {
+        @strongify(self)
+        self.selectBtn.selected = [x boolValue];
+    }];
 }
 
 - (void)selectShopModelSection:(NSInteger)section {
