@@ -88,6 +88,19 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateUI" object:[NSIndexPath indexPathWithIndex:section]];
 }
 
+- (void)clickHeaderOfSection:(NSInteger)section {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+    @weakify(self)
+    [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
+        @strongify(self)
+        ShopModel *model = self.shoppingVM.shopCartModel.shopArray[section];
+        model.hideRowContent = !model.hideRowContent;
+        NSLog(@"=====点击tap");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadData" object:nil];
+    }];
+    [self addGestureRecognizer:tap];
+}
+
 - (UIButton *)selectBtn {
     if (!_selectBtn) {
         _selectBtn = [[UIButton alloc] init];

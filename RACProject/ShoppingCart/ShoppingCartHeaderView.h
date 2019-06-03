@@ -14,5 +14,6 @@
 @property (nonatomic, strong) UIButton *selectBtn;
 - (void)bindViewModel:(ShoppingCartViewModel *)viewModel Section:(NSInteger)section;
 - (void)selectShopModelSection:(NSInteger)section;
+- (void)clickHeaderOfSection:(NSInteger)section;
 
 @end

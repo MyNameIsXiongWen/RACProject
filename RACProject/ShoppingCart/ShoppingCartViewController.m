@@ -64,8 +64,12 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
         [self.accountButton setTitle:[NSString stringWithFormat:@"结算(%ld)",(long)self.shoppingVM.shopCartModel.selectedGoodsCount] forState:UIControlStateNormal];
         self.totalMoneyLabel.text = [NSString stringWithFormat:@"总计：¥ %.2f",self.shoppingVM.shopCartModel.price];
     }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"reloadData" object:nil] subscribeNext:^(NSNotification * _Nullable x) {
+        //todo:时间会乱
+        [self.tableview reloadData];
+    }];
     [self.allSelectedBtn setImage:[UIImage imageNamed:@"unselected"] forState:UIControlStateNormal];
-    [self.allSelectedBtn setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
+    [self.allSelectedBtn setImage:[UIImage imageNamed:@"sel                                                                               ected"] forState:UIControlStateSelected];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,7 +82,8 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.shoppingVM.shopCartModel.shopArray[section].goodsArray.count;
+    ShopModel *shopModel = self.shoppingVM.shopCartModel.shopArray[section];
+    return shopModel.hideRowContent ? 0 : shopModel.goodsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,6 +100,7 @@ static NSString *const ShoppingCartHeaderViewIdentifier = @"ShoppingCartHeaderVi
     [[[headerView.selectBtn rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:headerView.rac_prepareForReuseSignal] subscribeNext:^(__kindof UIControl * _Nullable x) {
         [headerView selectShopModelSection:section];
     }];
+    [headerView clickHeaderOfSection:section];
     return headerView;
 }
 

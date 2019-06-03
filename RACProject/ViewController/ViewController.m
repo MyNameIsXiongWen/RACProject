@@ -34,7 +34,6 @@
     [self.goodsVM.btnCommand.executionSignals.switchToLatest subscribeNext:^(id  _Nullable x) {
         @strongify(self)
         self.textLabel.text = x;
-//        [self.navigationController pushViewController:[NSClassFromString(@"ShoppingCartViewController") new] animated:YES];
         [self presentViewController:[NSClassFromString(@"ShoppingCartViewController") new] animated:YES completion:nil];
     }];
     [self layoutCollectionView];
